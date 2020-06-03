@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CreateCVOnline.Models.Candidate>
+@using CreateCVOnline.Code
+@using System.Data
+@{
+    UserProcess usrp = new UserProcess();
+    ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_AdminLayoutPage1.cshtml";
+    DataTable accounts = usrp.getAccount();
+}
+
+<h2>Accounts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "NewAccount")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Email
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (DataRow item in accounts.Rows) {
+<tr>
+    <td>
+        @item["ID"]
+    </td>
+    <td>
+        @item["Username"]
+    </td>
+    <td>
+        @item["Password"]
+    </td>
+    <td>
+        @item["Role"]
+    </td>
+    <td>
+        @item["Email"]
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id=Convert.ToInt32(item["ID"].ToString()) }) |
+        @Html.ActionLink("Details", "Details", new { id=Convert.ToInt32(item["ID"].ToString())}) |
+        @Html.ActionLink("Delete", "deleteAccount", new { id=Convert.ToInt32(item["ID"].ToString()) })
+    </td>
+</tr>
+}
+
+</table>

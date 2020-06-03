@@ -1,0 +1,101 @@
+﻿@model CreateCVOnline.Models.CVModel
+
+@{
+    ViewBag.Title = "EditCV";
+    Layout = "~/Views/Shared/_LayoutCreateCVOnline.cshtml";
+}
+    <style>
+
+        /* style glyph */
+        .inner-addon .glyphicon {
+            position: absolute;
+            padding: 10px;
+            pointer-events: none;
+        }
+
+
+        /* add padding  */
+        .left-addon input {
+            padding-left: 30px;
+        }
+    </style>
+<br />
+@using(Html.BeginForm("Upload","Candidate",FormMethod.Post,new { enctype="multipart/form-data"}))
+{
+    <h3>Upload Avatar</h3>
+    <input type="file" name="file" value="Browse"/>
+    <input type="submit" value="UploaImage" />
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="form-group">
+    
+</div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-user"></i>
+            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Full Name" }, @style = "width:800px" })
+            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email" }, @style = "width:800px" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-calendar"></i>
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Age" }, @style = "width:800px" })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-earphone"></i>
+            @Html.EditorFor(model => model.NumberPhone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Numberphone" }, @style = "width:800px" })
+            @Html.ValidationMessageFor(model => model.NumberPhone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-road"></i>
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Address" }, @style = "width:1200px" })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Goal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 inner-addon left-addon">
+            <i class="glyphicon glyphicon-list-alt"></i>
+            @Html.TextAreaFor(model => model.Goal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Goal And Your Vision" }, @style = "width:1200px; height:200px " })
+            @Html.ValidationMessageFor(model => model.Goal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" style="width:200px" />
+        </div>
+    </div>
+</div>
+}

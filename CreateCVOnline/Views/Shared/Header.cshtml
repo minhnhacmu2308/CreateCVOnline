@@ -1,0 +1,127 @@
+﻿@using System.Web
+@using CreateCVOnline.Models
+@using CreateCVOnline.Code
+@{
+    UserProcess usr = new UserProcess();
+    var user = Session["Account"] as LoginModel;
+}
+@if (user == null)
+{
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Create CV Online</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Account/Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}
+else
+{
+    var username = user.Username;
+    var role = usr.getRole(username);
+    if (role == 1)
+    {
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Create CV Online</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Hi @user.Username</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/Index" class="nav-link">CV</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/Skills" class="nav-link">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/Activities" class="nav-link">Activities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/Education" class="nav-link">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/Jobs" class="nav-link">Jobs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Candidate/EditCV" class="nav-link">Change CV Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Account/ChangePassword" class="nav-link">Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Account/Logout" class="nav-link">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+    else if (role == 0)
+    {
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Create CV Online</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Hi @user.Username</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Business/Index" class="nav-link">List Candidate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Account/ChangePassword" class="nav-link">Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Account/Logout" class="nav-link">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+
+}

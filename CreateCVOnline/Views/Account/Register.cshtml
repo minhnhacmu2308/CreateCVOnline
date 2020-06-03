@@ -1,0 +1,65 @@
+﻿@model CreateCVOnline.Models.RegisterModel
+<!DOCUMENT html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Form</title>
+    <!-- Import Bootstrap and JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
+    </script>
+    <!-- My CSS and JQuery -->
+    <link href="~/Assets/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="~/Assets/jquery/register.js"></script>
+</head>
+<body>
+    <div class="cointainer-fluid bg">
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 col-xs-12 row-container">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                {
+                    <h1>Register with your information</h1>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @value = "",@id="username", @placeholder="Enter Username" })
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @value = "",@id="email",@placeholder="Enter Email" })
+                        <p class="emailError"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailretype">Email Address Again</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @value = "", @id = "emailretype", @placeholder = "Enter Email Again" })
+                        <p class="emailretypeError"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        @Html.PasswordFor(mode => Model.Password, new { @class = "form-control", @value = "",@id="password", @placeholder="Enter Password" })
+                        <p class="passwordError"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordretype">Password Again</label>
+                        @Html.PasswordFor(mode => Model.RepeatPassword, new { @class = "form-control", @value = "",@placeholer="Enter Password Again", @id= "passwordretype" })
+                        <p class="passwordretypeError"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Choose Your Role</label>
+                        @Html.DropDownListFor(model => model.Role, new SelectList(new List<Object>
+                            {
+                            new { value=0, text="Business"},
+                            new { value=1, text="Candidate"}
+                            }, "value", "text", 2)
+                            )
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block my-3">Register</button>
+                }
+                </div>
+        </div>
+    </div>
+</body>
+</html>
